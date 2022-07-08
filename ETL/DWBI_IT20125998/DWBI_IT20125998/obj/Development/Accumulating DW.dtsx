@@ -1,0 +1,999 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/16/2022 6:28:35 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-LR1M329"
+  DTS:CreatorName="DESKTOP-LR1M329\Minindu Senadheera"
+  DTS:DTSID="{1DF37337-C480-4AEE-94F2-9DB6DD0E1DA2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.180"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{84565BDD-F6C9-4177-8813-1C9E48283A3D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-LR1M329.Airbnb_DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{28AC70B6-A91D-453A-8DA6-8FB7AD0D8AA9}"
+      DTS:ObjectName="DESKTOP-LR1M329.Airbnb_DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-LR1M329;Initial Catalog=Airbnb_DW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-LR1M329.Airbnb_Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{39652A77-6C91-4F09-86E9-9E2DAA8523D2}"
+      DTS:ObjectName="DESKTOP-LR1M329.Airbnb_Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-LR1M329;Initial Catalog=Airbnb_Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load and Transform Accumilated complete time"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F7C19DC3-3D73-46AD-A6DA-6D0A3E26A3B4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load and Transform Accumilated complete time"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load and Transform Accumilated complete time\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[StgAccumilatedDate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load and Transform Accumilated complete time\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LR1M329.Airbnb_Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LR1M329.Airbnb_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Output].Columns[booking_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[booking_id]"
+                      lineageId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Output].Columns[booking_id]"
+                      name="booking_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      lineageId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[booking_id]"
+                      dataType="i4"
+                      name="booking_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      dataType="dbDate"
+                      name="accm_txn_complete_time" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[booking_id]"
+                      dataType="i4"
+                      lineageId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[booking_id]"
+                      name="booking_id" />
+                    <outputColumn
+                      refId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      dataType="dbDate"
+                      lineageId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time" />
+                    <outputColumn
+                      refId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load and Transform Accumilated complete time\Update accumilated complete time"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update accumilated complete time"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">update [dbo].[FactBooking]
+set [accm_txn_complete_time] = ?
+where [booking_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LR1M329.Airbnb_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LR1M329.Airbnb_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Inputs[OLE DB Command Input].Columns[accm_txn_complete_time]"
+                      cachedDataType="dbDate"
+                      cachedName="accm_txn_complete_time"
+                      externalMetadataColumnId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]" />
+                    <inputColumn
+                      refId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Inputs[OLE DB Command Input].Columns[booking_id]"
+                      cachedDataType="i4"
+                      cachedName="booking_id"
+                      externalMetadataColumnId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Output].Columns[booking_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbTimeStamp"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load and Transform Accumilated complete time.Paths[OLE DB Source Output]"
+              endId="Package\Load and Transform Accumilated complete time\Update accumilated complete time.Inputs[OLE DB Command Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load and Transform Accumilated complete time\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load and transform accumilated time diff"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{662ADE38-D7C1-4202-A4E9-78C1961DEFB7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load and transform accumilated time diff"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load and transform accumilated time diff\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactBooking]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load and transform accumilated time diff\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LR1M329.Airbnb_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LR1M329.Airbnb_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[booking_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[booking_id]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[booking_id]"
+                      name="booking_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[listingKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[listingKey]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[listingKey]"
+                      name="listingKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[customerKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[customerKey]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[customerKey]"
+                      name="customerKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[is_canceled]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[is_canceled]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[is_canceled]"
+                      name="is_canceled"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[arrivalDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[arrivalDateKey]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[arrivalDateKey]"
+                      name="arrivalDateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[stays_in_weekend_nights]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[stays_in_weekend_nights]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[stays_in_weekend_nights]"
+                      name="stays_in_weekend_nights"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[stays_in_week_nights]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[stays_in_week_nights]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[stays_in_week_nights]"
+                      name="stays_in_week_nights"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[adults]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[adults]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[adults]"
+                      name="adults"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[children]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[children]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[children]"
+                      name="children"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[babies]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[babies]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[babies]"
+                      name="babies"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[reservation_status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[reservation_status]"
+                      length="50"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[reservation_status]"
+                      name="reservation_status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[reservation_status_dateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[reservation_status_dateKey]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[reservation_status_dateKey]"
+                      name="reservation_status_dateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InsertDate]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[InsertDate]"
+                      name="InsertDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_create_time]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[txn_process_time_hours]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]"
+                      name="txn_process_time_hours"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[booking_id]"
+                      dataType="i4"
+                      name="booking_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[listingKey]"
+                      dataType="i4"
+                      name="listingKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[customerKey]"
+                      dataType="i4"
+                      name="customerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[is_canceled]"
+                      dataType="bool"
+                      name="is_canceled" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[arrivalDateKey]"
+                      dataType="i4"
+                      name="arrivalDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[stays_in_weekend_nights]"
+                      dataType="i4"
+                      name="stays_in_weekend_nights" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[stays_in_week_nights]"
+                      dataType="i4"
+                      name="stays_in_week_nights" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[adults]"
+                      dataType="i4"
+                      name="adults" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[children]"
+                      dataType="i4"
+                      name="children" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[babies]"
+                      dataType="i4"
+                      name="babies" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[reservation_status]"
+                      dataType="wstr"
+                      length="50"
+                      name="reservation_status" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[reservation_status_dateKey]"
+                      dataType="i4"
+                      name="reservation_status_dateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      name="accm_txn_create_time" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      name="accm_txn_complete_time" />
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[txn_process_time_hours]"
+                      dataType="i4"
+                      name="txn_process_time_hours" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[booking_id]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[booking_id]"
+                      name="booking_id" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[listingKey]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[listingKey]"
+                      name="listingKey" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[customerKey]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[customerKey]"
+                      name="customerKey" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[is_canceled]"
+                      dataType="bool"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[is_canceled]"
+                      name="is_canceled" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[arrivalDateKey]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[arrivalDateKey]"
+                      name="arrivalDateKey" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[stays_in_weekend_nights]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[stays_in_weekend_nights]"
+                      name="stays_in_weekend_nights" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[stays_in_week_nights]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[stays_in_week_nights]"
+                      name="stays_in_week_nights" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[adults]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[adults]"
+                      name="adults" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[children]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[children]"
+                      name="children" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[babies]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[babies]"
+                      name="babies" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[reservation_status]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[reservation_status]"
+                      name="reservation_status" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[reservation_status_dateKey]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[reservation_status_dateKey]"
+                      name="reservation_status_dateKey" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InsertDate]"
+                      name="InsertDate" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[txn_process_time_hours]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[txn_process_time_hours]"
+                      name="txn_process_time_hours" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load and transform accumilated time diff\Update accumilated time difference"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update accumilated time difference"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[FactBooking]
+SET [txn_process_time_hours] = DATEDIFF (Hh, accm_txn_create_time, accm_txn_complete_time)
+WHERE [booking_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load and transform accumilated time diff\Update accumilated time difference.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LR1M329.Airbnb_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LR1M329.Airbnb_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load and transform accumilated time diff\Update accumilated time difference.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load and transform accumilated time diff\Update accumilated time difference.Inputs[OLE DB Command Input].Columns[booking_id]"
+                      cachedDataType="i4"
+                      cachedName="booking_id"
+                      externalMetadataColumnId="Package\Load and transform accumilated time diff\Update accumilated time difference.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output].Columns[booking_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load and transform accumilated time diff\Update accumilated time difference.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load and transform accumilated time diff\Update accumilated time difference.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Load and transform accumilated time diff\Update accumilated time difference.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load and transform accumilated time diff\Update accumilated time difference.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Load and transform accumilated time diff\Update accumilated time difference.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\Update accumilated time difference.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\Update accumilated time difference.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load and transform accumilated time diff\Update accumilated time difference.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load and transform accumilated time diff\Update accumilated time difference.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load and transform accumilated time diff.Paths[OLE DB Source Output]"
+              endId="Package\Load and transform accumilated time diff\Update accumilated time difference.Inputs[OLE DB Command Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load and transform accumilated time diff\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C7D7F938-62D3-46BE-B248-B39A211BA02A}"
+      DTS:From="Package\Load and Transform Accumilated complete time"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load and transform accumilated time diff" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="304,42"
+          Id="Package\Load and Transform Accumilated complete time"
+          TopLeft="203,135" />
+        <NodeLayout
+          Size="273,42"
+          Id="Package\Load and transform accumilated time diff"
+          TopLeft="407,261" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="355,177">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="188.5,84"
+              Start="0,0"
+              End="188.5,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38"
+                    Point2="0,42"
+                    Point3="4,42" />
+                  <mssgle:LineSegment
+                    End="184.5,42" />
+                  <mssgle:CubicBezierSegment
+                    Point1="184.5,42"
+                    Point2="188.5,42"
+                    Point3="188.5,46" />
+                  <mssgle:LineSegment
+                    End="188.5,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load and Transform Accumilated complete time">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load and Transform Accumilated complete time\OLE DB Source"
+          TopLeft="127,150" />
+        <NodeLayout
+          Size="242,42"
+          Id="Package\Load and Transform Accumilated complete time\Update accumilated complete time"
+          TopLeft="409,155" />
+        <EdgeLayout
+          Id="Package\Load and Transform Accumilated complete time.Paths[OLE DB Source Output]"
+          TopLeft="277,173.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="132,0"
+              Start="0,0"
+              End="124.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="124.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load and Transform Accumilated complete time\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load and transform accumilated time diff">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load and transform accumilated time diff\OLE DB Source"
+          TopLeft="130.8,112" />
+        <NodeLayout
+          Size="245.5,42"
+          Id="Package\Load and transform accumilated time diff\Update accumilated time difference"
+          TopLeft="421.6,114.4" />
+        <EdgeLayout
+          Id="Package\Load and transform accumilated time diff.Paths[OLE DB Source Output]"
+          TopLeft="280.8,134.2">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="140.8,0"
+              Start="0,0"
+              End="133.3,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="133.3,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load and transform accumilated time diff\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
